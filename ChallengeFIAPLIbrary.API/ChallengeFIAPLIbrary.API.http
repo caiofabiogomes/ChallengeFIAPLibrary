@@ -1,0 +1,6 @@
+@ChallengeFIAPLIbrary.API_HostAddress = http://localhost:5263
+
+GET {{ChallengeFIAPLIbrary.API_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
