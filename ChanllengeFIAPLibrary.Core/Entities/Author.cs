@@ -22,5 +22,11 @@ namespace ChallengeFIAPLibrary.Domain.Entities
         public Address Address { get; private set; }
 
         public ICollection<Book> Books { get; private set; }
+
+        public void UpdateAddress(Address address) 
+        {
+            if(!Address.Equals(address))
+                Address = address;
+        }
     }
 }
