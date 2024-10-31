@@ -1,21 +1,19 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using ChallengeFIAPLibrary.Domain.Entities;
+﻿using ChallengeFIAPLibrary.Domain.Entities;
 using ChallengeFIAPLibrary.Domain.Repositories;
 using Microsoft.EntityFrameworkCore;
+using MongoDB.Driver;
 
 namespace ChallengeFIAPLibrary.Infrastructure.Persistence.Repositories
 {
     public abstract class AbstractRepository<T> : IRepository<T> where T : BaseEntity
     { 
         private readonly WriteDbContext _context;
+        private readonly ReadDbContext _contextRead;
 
-        public AbstractRepository(WriteDbContext context)
+        public AbstractRepository(WriteDbContext context, ReadDbContext contextRead)
         {
             _context = context;
+            _contextRead = contextRead;
         }
 
 
@@ -37,13 +35,13 @@ namespace ChallengeFIAPLibrary.Infrastructure.Persistence.Repositories
         }
 
         public async Task<T?> GetByIdAsync(Guid id)
-        {
-            return await _context.Set<T>().FindAsync(id);
+        { 
+            return await _contextRead.Set<T>().Find(c => c.Id == id).SingleOrDefaultAsync();
         }
 
         public async Task<List<T>> GetAllAsync()
         {
-            return await _context.Set<T>().ToListAsync();
+            return await _contextRead.Set<T>().Find(_ => true).ToListAsync();
         }
     }
 }

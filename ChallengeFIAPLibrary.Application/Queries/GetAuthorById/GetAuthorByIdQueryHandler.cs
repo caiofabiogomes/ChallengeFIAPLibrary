@@ -1,12 +1,8 @@
-﻿using ChallengeFIAPLibrary.Application.Abstraction;
+﻿using AutoMapper;
+using ChallengeFIAPLibrary.Application.Abstraction;
 using ChallengeFIAPLibrary.Application.ViewModels;
 using ChallengeFIAPLibrary.Domain.Repositories;
 using MediatR;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ChallengeFIAPLibrary.Application.Queries.GetAuthorById
 {
@@ -26,7 +22,7 @@ namespace ChallengeFIAPLibrary.Application.Queries.GetAuthorById
         {
             var author = await _authorRepository.GetByIdAsync(request.Id);
 
-            if (author == null)
+            if (author is null)
                 return Result<AuthorViewModel>.NotFound("Author not found");
 
             var authorResult = _mapper.Map<AuthorViewModel>(author);

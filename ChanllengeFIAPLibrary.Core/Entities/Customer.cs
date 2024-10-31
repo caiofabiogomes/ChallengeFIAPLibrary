@@ -21,7 +21,7 @@ namespace ChallengeFIAPLibrary.Domain.Entities
         public Email Email { get; private set; }
         
         public Address Address { get; private set; }
-
+        
         public List<Loan> Loans { get; private set; }
 
     }

@@ -1,6 +1,5 @@
 ﻿using ChallengeFIAPLibrary.Domain.Entities;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Logging;
 using System.Linq.Expressions;
 using System.Reflection;
 
@@ -14,12 +13,12 @@ namespace ChallengeFIAPLibrary.Infrastructure.Persistence
 
         public DbSet<Book> Books { get; set; }
 
-        public DbSet<Loan> Loans { get; set; }
-
+        public DbSet<Loan> Loans { get; set; } 
+         
         protected override void OnModelCreating(ModelBuilder modelBuilder)
-        {
+        {   
             modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
-
+          
             foreach (var entityType in modelBuilder.Model.GetEntityTypes())
             {
                 if (!typeof(BaseEntity).IsAssignableFrom(entityType.ClrType)) 

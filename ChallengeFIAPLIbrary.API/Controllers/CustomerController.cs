@@ -1,4 +1,5 @@
 ﻿using ChallengeFIAPLibrary.Application.Commands.AddAuthor;
+using ChallengeFIAPLibrary.Application.Commands.AddCustomer;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
@@ -31,7 +32,7 @@ namespace ChallengeFIAPLIbrary.API.Controllers
 
         // POST api/<CustomerController>
         [HttpPost]
-        public async Task<IActionResult> Post([FromBody] AddAuthorCommand command)
+        public async Task<IActionResult> Post([FromBody] AddCustomerCommand command)
         {
             await _mediator.Send(command);
 

@@ -1,12 +1,8 @@
-﻿using ChallengeFIAPLibrary.Application.Abstraction;
+﻿using AutoMapper;
+using ChallengeFIAPLibrary.Application.Abstraction;
 using ChallengeFIAPLibrary.Application.ViewModels;
 using ChallengeFIAPLibrary.Domain.Repositories;
 using MediatR;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ChallengeFIAPLibrary.Application.Queries.GetAuthors
 {
@@ -28,7 +24,7 @@ namespace ChallengeFIAPLibrary.Application.Queries.GetAuthors
 
             var authorsResult = _mapper.Map<List<AuthorViewModel>>(authors);
 
-            return authorsResult;
+            return Result<List<AuthorViewModel>>.Success(authorsResult);
         }
     }
 }

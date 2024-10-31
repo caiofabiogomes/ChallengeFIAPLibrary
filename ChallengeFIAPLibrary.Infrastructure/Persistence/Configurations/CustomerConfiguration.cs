@@ -10,10 +10,6 @@ namespace ChallengeFIAPLibrary.Infrastructure.Persistence.Configurations
         {
             builder.HasKey(e => e.Id);
 
-            builder.Property(e => e.Name)
-                .IsRequired()
-                .HasMaxLength(100);
-
             builder.OwnsOne(property => property.Name);
 
             builder.OwnsOne(property => property.Address);

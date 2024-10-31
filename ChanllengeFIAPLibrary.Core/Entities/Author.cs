@@ -11,13 +11,13 @@ namespace ChallengeFIAPLibrary.Domain.Entities
 
         public Author(Name name, Email email, Address address)
         {
-            NameAuthor = name;
+            Name = name;
             Email = email;
             Address = address;
             Books = new List<Book>();
         }
 
-        public Name NameAuthor { get; private set; }
+        public Name Name { get; private set; }
         public Email Email { get; private set; }
         public Address Address { get; private set; }
 

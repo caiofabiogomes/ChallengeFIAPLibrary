@@ -3,5 +3,5 @@ using ChallengeFIAPLibrary.Domain.Repositories;
 
 namespace ChallengeFIAPLibrary.Infrastructure.Persistence.Repositories
 {
-    public class LoanRepository(WriteDbContext context) : AbstractRepository<Loan>(context), ILoanRepository;
+    public class LoanRepository(WriteDbContext context, ReadDbContext readDbContext) : AbstractRepository<Loan>(context, readDbContext), ILoanRepository;
 }

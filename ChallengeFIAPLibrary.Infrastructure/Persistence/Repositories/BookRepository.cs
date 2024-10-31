@@ -3,5 +3,5 @@ using ChallengeFIAPLibrary.Domain.Repositories;
 
 namespace ChallengeFIAPLibrary.Infrastructure.Persistence.Repositories
 {
-    public class BookRepository(WriteDbContext context) : AbstractRepository<Book>(context), IBookRepository;
+    public class BookRepository(WriteDbContext context, ReadDbContext readDbContext) : AbstractRepository<Book>(context, readDbContext), IBookRepository;
 }

@@ -1,14 +1,13 @@
-﻿using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.DependencyInjection;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using ChallengeFIAPLibrary.Domain.Repositories;
+﻿using ChallengeFIAPLibrary.Domain.Repositories;
 using ChallengeFIAPLibrary.Infrastructure.Persistence;
+using ChallengeFIAPLibrary.Infrastructure.Persistence.DataSync;
 using ChallengeFIAPLibrary.Infrastructure.Persistence.Repositories;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
+using MongoDB.Bson;
+using MongoDB.Bson.Serialization;
+using MongoDB.Bson.Serialization.Serializers;
 
 namespace ChallengeFIAPLibrary.Infrastructure
 {
@@ -23,13 +22,26 @@ namespace ChallengeFIAPLibrary.Infrastructure
             return services;
         }
         private static IServiceCollection AddPersistence(this IServiceCollection services, IConfiguration configuration)
-        {
-            var connectionString = configuration.GetConnectionString("DefaultConnection");
+        { 
+            var connectionStringWrite = configuration.GetConnectionString("DefaultConnection");
+            services.AddDbContext<WriteDbContext>(options => options.UseSqlServer(connectionStringWrite));
 
-            services.AddDbContext<WriteDbContext>(options => options.UseSqlServer(connectionString));
+            BsonSerializer.RegisterSerializer(new GuidSerializer(GuidRepresentation.Standard));
+
+            services.AddSingleton<ReadDbContext>(sp =>
+            {
+                var mongoDbConnection = configuration.GetConnectionString("MongoDbConnection");
+                var databaseName = configuration["DatabaseName"];
+                return new ReadDbContext(mongoDbConnection, databaseName);
+            });
+
+            services.AddScoped<CdcMonitorService>();
+
+            services.AddHostedService<CdcSyncHostedService>();
 
             return services;
         }
+
         private static IServiceCollection AddRepositories(this IServiceCollection services)
         {
             services.AddScoped<ICustomerRepository, CustomerRepository>();

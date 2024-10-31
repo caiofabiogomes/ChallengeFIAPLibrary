@@ -2,9 +2,9 @@
 using ChallengeFIAPLibrary.Application.ViewModels;
 using MediatR;
 
-namespace ChallengeFIAPLibrary.Application.Queries.GetAuthorById
+namespace ChallengeFIAPLibrary.Application.Queries.GetLoanById
 {
-    public class GetAuthorByIdQuery : IRequest<Result<AuthorViewModel>>
+    public class GetLoanByIdQuery : IRequest<Result<LoanViewModel>>
     {
         public Guid Id { get; set; }
     }

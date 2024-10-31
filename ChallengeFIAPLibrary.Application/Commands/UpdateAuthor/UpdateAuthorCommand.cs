@@ -1,12 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace ChallengeFIAPLibrary.Application.Commands.UpdateAuthor
+﻿namespace ChallengeFIAPLibrary.Application.Commands.UpdateAuthor
 {
-    internal class UpdateAuthorCommand
+    public class UpdateAuthorCommand
     {
     }
 }

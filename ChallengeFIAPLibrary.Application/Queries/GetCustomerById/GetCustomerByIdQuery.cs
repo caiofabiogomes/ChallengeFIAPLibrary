@@ -2,9 +2,9 @@
 using ChallengeFIAPLibrary.Application.ViewModels;
 using MediatR;
 
-namespace ChallengeFIAPLibrary.Application.Queries.GetAuthorById
+namespace ChallengeFIAPLibrary.Application.Queries.GetCustomerById
 {
-    public class GetAuthorByIdQuery : IRequest<Result<AuthorViewModel>>
+    public class GetCustomerByIdQuery : IRequest<Result<CustomerViewModel>>
     {
         public Guid Id { get; set; }
     }

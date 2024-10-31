@@ -13,6 +13,7 @@ namespace ChallengeFIAPLibrary.Application
         public static IServiceCollection AddApplication(this IServiceCollection services)
         {
             services
+                .AddAutoMapper()
                 .AddAMediatR();
 
             return services;
@@ -24,6 +25,13 @@ namespace ChallengeFIAPLibrary.Application
 
             return services;
         }
-         
+
+        public static IServiceCollection AddAutoMapper(this IServiceCollection services)
+        {
+            services.AddAutoMapper(typeof(ApplicationModule));
+
+            return services;
+        }
+
     }
 }
