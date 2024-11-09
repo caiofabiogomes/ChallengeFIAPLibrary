@@ -1,4 +1,5 @@
 ﻿using ChallengeFIAPLibrary.Application.Commands.AddAuthor;
+using ChallengeFIAPLibrary.Application.Commands.AddBook;
 using ChallengeFIAPLibrary.Application.Commands.UpdateAuthor;
 using ChallengeFIAPLibrary.Application.Queries.GetAuthorById;
 using ChallengeFIAPLibrary.Application.Queries.GetAuthors;
@@ -12,41 +13,40 @@ namespace ChallengeFIAPLIbrary.API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class AuthorController : ControllerBase
+    public class BookController : ControllerBase
     {
         private readonly IMediator _mediator;
-        public AuthorController(IMediator mediator)
+        public BookController(IMediator mediator)
         {
             _mediator = mediator;
         } 
 
-        [HttpGet("GetAll")] 
-        public async Task<IActionResult> GetAll()
-        {
-            var query = new GetAllAuthorsQuery();
-            var response = await _mediator.Send(query);
+        //[HttpGet("GetAll")] 
+        //public async Task<IActionResult> GetAll(GetAllAuthorsQuery query)
+        //{
+        //    var response = await _mediator.Send(query);
 
-            if (!response.IsSuccess)
-                return StatusCode(500, response.Message);
+        //    if (!response.IsSuccess)
+        //        return StatusCode(500, response.Message);
 
-            return StatusCode(201, response);
-        }
+        //    return StatusCode(201, response);
+        //}
 
-        [HttpGet("GetById")] 
-        public async Task<IActionResult> GetById(Guid id)
-        {
-            var query = new GetAuthorByIdQuery()
-            {
-                Id = id
-            };
+        //[HttpGet("GetById")] 
+        //public async Task<IActionResult> GetById(Guid id)
+        //{
+        //    var query = new GetAuthorByIdQuery()
+        //    {
+        //        Id = id
+        //    };
 
-            var response = await _mediator.Send(query);
+        //    var response = await _mediator.Send(query);
 
-            if (!response.IsSuccess)
-                return StatusCode(500, response.Message);
+        //    if (!response.IsSuccess)
+        //        return StatusCode(500, response.Message);
 
-            return StatusCode(201, response);
-        }
+        //    return StatusCode(201, response);
+        //}
 
         //[HttpDelete("Delete")] 
         //public async Task<IActionResult> Delete(Guid id)
@@ -72,7 +72,7 @@ namespace ChallengeFIAPLIbrary.API.Controllers
         //}
 
         [HttpPost]
-        public async Task<IActionResult> Post([FromBody] AddAuthorCommand command)
+        public async Task<IActionResult> Post([FromBody] AddBookCommand command)
         {
             await _mediator.Send(command);
 

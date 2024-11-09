@@ -4,6 +4,10 @@ namespace ChallengeFIAPLibrary.Domain.Entities
 {
     public class Book : BaseEntity
     {
+        public Book()
+        {
+            
+        }
         public Book(string title, string description, int stockQuantity, Guid authorId)
         {
             Title = title;

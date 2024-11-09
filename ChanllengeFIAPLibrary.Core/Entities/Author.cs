@@ -1,7 +1,10 @@
 ﻿using ChallengeFIAPLibrary.Domain.ValueObjects;
+using MongoDB.Bson.Serialization.Attributes;
 
 namespace ChallengeFIAPLibrary.Domain.Entities
 {
+    [BsonNoId]
+    [BsonIgnoreExtraElements]
     public class Author : BaseEntity
     {
         public Author()

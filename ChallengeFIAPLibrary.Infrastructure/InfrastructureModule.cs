@@ -34,10 +34,7 @@ namespace ChallengeFIAPLibrary.Infrastructure
                 var databaseName = configuration["DatabaseName"];
                 return new ReadDbContext(mongoDbConnection, databaseName);
             });
-
-            services.AddScoped<CdcMonitorService>();
-
-            services.AddHostedService<CdcSyncHostedService>();
+             
 
             return services;
         }
