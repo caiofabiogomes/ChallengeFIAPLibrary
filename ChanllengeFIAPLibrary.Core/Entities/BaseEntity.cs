@@ -1,5 +1,9 @@
-﻿namespace ChallengeFIAPLibrary.Domain.Entities
+﻿using MongoDB.Bson.Serialization.Attributes;
+
+namespace ChallengeFIAPLibrary.Domain.Entities
 {
+    [BsonNoId]
+    [BsonIgnoreExtraElements]
     public abstract class BaseEntity
     {
         protected BaseEntity()
